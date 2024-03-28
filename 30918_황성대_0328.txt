@@ -1,0 +1,46 @@
+30918_황성대_0328
+
+oracle 접속 방법
+cmd -> sqlplus -> id : system ps : 1234
+
+hr 계정 접속
+1. alter user hr
+2. identified by hr
+3. account unlock;
+
+conn hr/hr
+
+세부 명령어
+
+set linesize ?; cmd창에 줄 너비 조정
+
+clear screen or cl screen; cmd창을 비움(화면에 보이는 모든 것 삭제)
+
+문제 > Jobs테이블에서 Job_id와 max_salary를 출력하시오.
+
+1. select Job_id, max_salary from Jobs;
+
+문제 > jobs테이블에서 max_salary가 10000인 행을 출력하시오.
+
+1. select * from jobs
+2. where max_saraly = 10000;
+
+문제 > jobs테이블에서 max_salary값이 10000인 job_id를 출력하시오.
+
+1. select job_id from jobs
+2. where max_salary = 10000;
+
+문제 > jobs테이블에서 min_salary값이 4000이고 max_salary값이 10000인 행을 출력하시오.
+
+1. select * from jobs
+2. where min_salary = 4000 and max_salary = 10000;
+
+문제 > jobs테이블에서 min_salary값이 5000 이하이고 max_salary값이 10000 이상인 job_id를 출력하시오.
+
+1. select job_id from jobs
+2. where min_salary <= 5000 and max_salary >= 10000;
+
+문제 > jobs테이블에서 min_salary값이 5000 이하 이거나 max_salary값 10000 이상인 job_id를 출력하시오.
+
+1. select job_id from jobs
+2. where min_salary <= 5000 or max_salary >= 10000;
