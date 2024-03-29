@@ -1,0 +1,76 @@
+30918_황성대_0329
+
+문제1 > jobs테이블에서 min_salary값이 5000이하이고 max_salary값이 10000이상인 job_id를 출력하시오.
+
+1. selete job_id from jobs
+2. where min_salary <= 5000 and max_salary >= 10000;
+
+<출력결과>
+
+JOB_ID
+--------------------
+IT_PROG
+PR_REP
+
+문제 2 > jobs테이블에서 min_salary값이 5000미만 이거나, max_salary값이 15000초과인 job_id를 출력하시오.
+
+1. select job_id from jobs
+2. where min_salary < 5000 or max_salary > 15000;
+
+논리 연산자 : <, <=, >, >=, !=
+
+!= = not ?
+
+문제 3 > job_title이 programmer인 행전체를 출력하시오.
+
+1. select * from jobs
+2. where job_title = 'Programmer';
+
+문제 4 > job_title이 Marketing Manager인 행전체를 출력하시오.
+
+1. select * from jobs
+2. where job_title = 'Marketing Manager';
+
+문제 5 > job_title이 Marketing Manager과 Programmer인 행전체를 출력하시오.
+
+1. select * from jobs
+2. where job_title = 'Marketing Manager' or job_title = 'Programmer';
+
+where절에서 문제 5번과 같이 두 가지의 행을 출력할 땐 or, and 또는 in을 사용한다.
+
+ex) 1. select * from jobs
+    2. where job_title in('Programmer', 'Marketing Manager');
+
+문제 6 > job_title이 Programmer, Manager 인 행 정체를 출력하시오.
+
+1. select * from jobs
+2. where job_title = 'Programmer' or job_title = 'Manager';
+
+문제 7 > 문제 6문제를 'IN' 명령을 이용해 작성하시오.
+
+1. select * from jobs
+2. where job_title in('Programmer', 'Marketing Manager');
+
+문제 8  > max_salary값이 10000이상 15000이하인 job_title을 출력하시오.
+
+1. select job_title from jobs
+2. where max_salary between 10000 and 15000;
+
+or 
+
+1. select job_title from jobs
+2. where max_salary <= 10000 and max_salary >= 15000;
+
+문제 9  > job_title이 'P'로 시작하는 행전체를 출력하시오.
+
+1. select * from jobs
+2. where job_title like 'P%';
+
+union 이란
+두개의 명령문을 한번에 사용할 수 있는 명령문이다.
+
+select * from jobs
+  2  where job_title like 'P%'
+  3  union
+  4  select * from jobs
+  5  where max_salary between 10000 and 15000;
