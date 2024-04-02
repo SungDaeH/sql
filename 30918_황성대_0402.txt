@@ -1,0 +1,50 @@
+30918_황성대_0402
+
+문제 1 > union 문을 이용하여 jobs테이블에서 job_title이 P로 시작하고 max_salary가 8000이상인 행전체를 출력하시오.
+
+select * from jobs
+  2  where job_title like 'P%'
+  3  union // 합집합
+  4  select * from jobs
+  5  where max_salary <= 8000;
+
+
+ select * from jobs
+  2  where job_title like 'P%'
+  3  minus // 차집합
+  4  select * from jobs
+  5  where max_salary >= 8000;
+
+차집합이란?
+a(첫번째 조건)에서 b(두번째 조건)만큼을 지워라
+
+select * from jobs
+  2  where job_title like 'P%'
+  3  intersect // 교집합
+  4  select * from jobs
+  5  where max_salary >= 8000;
+
+select * from jobs
+  2  where job_title like 'P%'
+  3  union all // 합집합 중복 출력
+  4  select * from jobs
+  5  where max_salary >= 8000;
+
+★함수 : 특정한 결과 값을 얻기 위해 데이터를 입력할 수 있는
+특수 명령어로 내장함수(이미 만들어져 있는)와 사용자 정의함수(직접 만드는)가 있다.
+
+문제 12 > job_title 데이터를 모두 대문자로, job_id를 모두 소문자로 바꾸어 출력하세요.
+
+select upper(job_title), lower(job_id) from jobs;
+
+SQL> select job_title, upper(job_title), lower(job_title), initcap(job_title) from jobs;
+
+해설 : job_title의 대문자와 소문자를 동시에 출력하고 서로 비교한다.
+
+SQL> select job_title, max_salary, max_salary*2 from jobs;
+
+해설 :  max_salary의 기본값과 2배값을 비교하여 출력한다.
+
+SQL> select job_title, length(job_title) from jobs;
+
+해설 : job_title의 길이를 숫자로 표현한다.
