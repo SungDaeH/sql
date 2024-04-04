@@ -1,0 +1,10 @@
+30918_황성대_0404
+
+문제 1> jobs테이블에서 job_title의 문자수를 세어 새로운 열(length)과 함께 출력하시오
+
+SQL> select job_title,length(job_title) from jobs;
+
+문제 2 > jobs테이블에서 문자수가 10이상인 job_title을 출력하시오.
+
+SQL> select * from jobs
+  2  where length(job_title) >= 10;
