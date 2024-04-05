@@ -1,0 +1,22 @@
+30918_황성대
+
+★ length : 문자(문장)의 글자수를 추출하는 함수
+
+문제 1 > jobs테이블에서 job_title의 글자수를 세어주는 열을 별도로 만들어 출력하시오.
+
+SQL> select job_title, length(job_title) from jobs;
+
+★ substr : 문자(문장)의 일부글자를 추출하는 함수
+예) substr(열,1(시작 위치),2(추출할 문자수))
+
+문제 2 > jobs테이블에서 job_title의 앞에서부터 2자리만 출력하시오.
+
+SQL> select substr(job_title,1 ,2) from jobs;
+
+★ replace함수 + 별칭 (이름)
+
+1 select 'Programmer' as before, replace('Programmer','mer'.'') as first,
+2 replace ('Programmer','mm','nn') as second from jobs;
+
+SQL> select 'Programmer' as before, replace(Job_title, 'Sales', '') as first,
+  2  replace(job_title,'Manager','Alba') as second from jobs;
