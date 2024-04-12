@@ -21,3 +21,22 @@ round 함수 // 반올림 처리 함수
 
 SQL> select min_salary as before, round(min_salary/3.4,2), round(min_salary/3.4,0), round(min_salary/3.14,-2)
   2  from jobs;
+
+mod 함수 // 나머지를 구하는 함수 보통 2진수를 10진수로 변환할 때 많이 씀
+
+sysdate 함수 : 날짜 데이터를 다루는 날짜 함수
+SQL> select max_salary, mod(max_salary,2) as half from jobs;
+
+SQL> select sysdate as now, sysdate-1 as yesterday,
+  2  sysdate+1 as tomorrow from job_history;
+
+add_months 함수 : 몇개월 이후 날짜를 구하는 함수
+SQL> select start_date as now, add_months(start_date,3) from job_history;
+
+months_between 함수 : 두 날짜 간의 개월 수 차이를 구하는 함수
+SQL> select start_date,end_date,months_between(end_date,start_date) as exep
+  2  from job_history;
+
+round 함수를 사용하여 소숫점 지우기
+SQL> select start_date,end_date,months_between(end_date,start_date) as exep
+  2  , round(months_between(end_date, start_date), 0) as round from job_history;
