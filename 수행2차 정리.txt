@@ -18,7 +18,7 @@
  select [열1], [열2] from [테이블];  열을 검색할떄 사용
 
  
-★decs 테이블명;  특정테이블(표)이 어떤 열로 구성되어 있는지 확인
+★desc 테이블명;  특정테이블(표)이 어떤 열로 구성되어 있는지 확인
 ★select [열이름] from [테이블명];    테이블의 열 내용을 조회하는데 사용
 
 ★ set linesize 300; // 라인의 너비 조정 
@@ -51,13 +51,13 @@
 
 문제7-1> jobs테이블에서   min_salary값이 5000 미만 이고 max_salary값 10000 초과인  job_id 을 출력하시오.
 
-select * from jobsbe
+select * from jobs
    where min_salary<5000 and max_salary>10000;
   
 
 문제7-2> jobs테이블에서   min_salary값이 5000 이하 이거나 max_salary값 10000 이상인  job_id 을 출력하시오.
  select job_id from jobs
-  where min_salary<=5000 and max_salary>=10000;
+  where min_salary<=5000 or max_salary>=10000;
 
 
 문제7-3> jobs테이블에서  job_title이 'Manager' 인 행전체을 출력하시오.
@@ -68,7 +68,7 @@ select * from jobsbe
  1  select * from jobs
  2  where job_title='Manager' or  job_title='Stock Clerk' or  job_title='Sales Manager';
 문제8-1> 위 문제를 'in'함수를 이용하여 코드를 간소화 하시오
- 1 select * from jobs
+  select * from jobs
  2  where job_title in ('Manager','Stock Clerk','Sales Manager');
 
 
@@ -93,3 +93,7 @@ select * from jobsbe
   3  union   // 합집합 // minus차집합// intersect 교집합 // union all중복도 모두 출력
   4  select * from jobs 
   5  where max_salary >=8000;
+
+
+
+
