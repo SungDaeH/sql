@@ -85,12 +85,12 @@ select * from jobs
   2  where job_title like 'P%';
 
 
-문제11>  union문을 이용해서 jobs테이블에서 
+문제11>  intersect문을 이용해서 jobs테이블에서 
  job_title이 'P'로 시작하고 max_salary가 8000이상인 행전체를 출력하시오
 
   1 select * from jobs
   2  where job_title like 'P%'
-  3  union   // 합집합 // minus차집합// intersect 교집합 // union all중복도 모두 출력
+  3  intersect   //union 합집합 // minus차집합// intersect 교집합 // union all중복도 모두 출력
   4  select * from jobs 
   5  where max_salary >=8000;
 
