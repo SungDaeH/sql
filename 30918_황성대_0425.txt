@@ -1,0 +1,20 @@
+DECODE 함수 : 기준이 되는 데이터를 먼저 지정한 후
+해당 데이터 값에 따라 다른 결과 값을 내보내는 함수
+(조건에 따라 실행하는 IF ~ ELSE와 비슷함.)
+형식 : DECODE(열 또는 데이터, 연상이나 함수 결과, 조건1, 조건1참일때 반환결과,
+조건 2, 조건2가 참일때 반환결과, 조건3, 조전3가 참일때 반환결과, 위 조건에 해당되지 않을때 반환할 결과)
+
+문제 > (DECODE 함수 사용) jobs 테이블의 job_title 중 'President'의 max_salary를 2.5배 인상,
+'Programmer'의 max_salary를 1.5배 인상, 나머지는 반(0.5)으로 삭감하는 테이블을 UPSALE열로 출력하시오.
+
+SQL> select job_title, max_salary, DECODE(job_title, 'President', max_salary * 2.5,
+  2  'Programmer', max_salary*1.5, max_salary*0.5) as upsale
+  3  from jobs;
+
+문제 > (DECODE 함수 사용) jobs 테이블의 job_title 중 'President'의 min_salary를 20% 삭감, 
+'Programmer'의 min_salary를 1.5배 인상, 'Sales Manager'의 min_salary를 8% 삭감,
+'Stock Manager'의 min_salary는 현행유지, 나머지는 2% 삭감하는 테이블 DOWNSALE별칭 열로 출력하시오
+
+SQL> select job_title, min_salary, DECODE(job_title, 'President', min_salary * 0.2,
+  2  'Programmer', min_salary * 2, 'Sales Manager', min_salary * 0.08, 'Stock Manager', min_salary, min_salary * 0.02)
+  3  as NEWSALE from jobs;
