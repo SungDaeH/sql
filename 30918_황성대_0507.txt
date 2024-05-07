@@ -1,0 +1,9 @@
+테이블 생성하기
+	create table fatboy
+	as select * from jobs;
+
+테이블에 데이터를 추가하는 insert문
+
+SQL> insert into FATBOY(job_id, job_title, min_salary, max_salary)
+  2  values('AD_PRES', 'KING', 20000, 400000);
+
