@@ -1,0 +1,45 @@
+1번 문제
+
+jobs테이블에서 job_title 데이터를 basic(별칭)열, job_title 데이터의 글자를 대문자로 바꾸고 upper(별칭)열, job_title 데이터의 글자를 모두 소문자로 바꾸고 
+lower(별칭)열로 바꾼 뒤 출력하시오. (upper, lower 사용)
+
+SQL> select job_title as basic, upper(job_title), lower(job_title) as lower from jobs;
+
+2번 문제
+
+jobs테이블에서 job_id중 'AD_PRES'에 'AD' 글자만 나오도록 출력하시오. (substr 사용)
+
+SQL> select substr(job_id,1,2) from jobs
+  2  where job_id = 'AD_PRES';
+
+3번 문제
+
+jobs테이블에서 job_id열과 max_salary열의 데이터를 합쳐 'before'라는 열(별칭) 만들고,
+중간에 ' : ' 을 넣어 'now'라는 열(별칭)을 만들고,
+max_salary열에 1.2를 곱한 후 'after'라는 열(별칭)을 만들고 출력하시오. (concat 사용, 'now'열부턴 만들 땐 || 사용)
+
+SQL> select concat(job_id, max_salary) as before,
+  2  job_id || ' : ' || max_salary as now,
+  3  job_id || ' : ' || max_salary*1.2 as after from jobs;
+
+4번 문제
+
+jobs테이블에서 min_salary열을 출력하고 별칭을 before라고 만들고, min_salary를 3.4로 나눈뒤 소수점 둘째자리까지 출력 후 별칭을 two라고 만들고,
+min_salary를 3.4로 나눈뒤 십의 자리까지 출력 후 별칭을 mi_two라고 만들고 출력하시오. 
+
+SQL> select min_salary as before, round(min_salary/3.4, 2) as two,
+  2  round(min_salary/3.4, -2) as mi_two from jobs;
+
+5번 문제
+
+(DECODE 함수 사용) jobs테이블에서 job_id중 'AC_ACCOUNT'에 min_salary를 1.2배 인상, job_id중 'PR_REP'에 min_salary는 변동 없음,
+job_id중 'ST_MAN' min_salary를 0.2(0.98)배 삭감하고, 나머지 열은 min_salary를 절반 삭감하는 테이블을 new_min_salary열로 출력하시오.
+SQL> select job_id, min_salary, DECODE(job_title, 'AC_ACCOUNT', min_salary*1.2,
+  2  'PR_REP', min_salary, 'ST_MAN', min_salary*0.98, min_salary*0.5) from jobs;
+
+5-1문제
+위 문제를 case로 만드시오
+
+6번 문제
+avg 함수를 이용하여 max_salary의 평균을 구하고 avg라는 열로 출력하시오 (단 소수 셋째자리까지 출력)
+SQL> select round(avg(max_salary), 3) from jobs;
