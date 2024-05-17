@@ -1,0 +1,20 @@
+create table eta
+	as select * from jobs;
+
+SQL> set linesize 1000
+
+테이블에 데이터를 추가하는 insert문
+SQL> insert into eta
+  2  (job_id, job_title, min_salary, max_salary)
+  3  values('AD_PRES', 'KING', 20000, 40000);
+
+열을 지정하지 않아도 값의 개수가 맞는다면 순차적으로 들어감
+
+SQL> insert into eta
+  2  values('FD_ABD', 'QUEEN', 10000, 125000);
+
+열을 빈칸으로 남겨 저장할 수 있다.
+SQL> insert into eta
+  2  (job_id, job_title, min_salary, max_salary)
+  3  values('SAR_ENG', 'manager', NULL, NULL);
+
