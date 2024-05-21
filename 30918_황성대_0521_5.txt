@@ -1,0 +1,40 @@
+
+
+SQL> create table idole
+  2  as select * from jobs;
+
+there is always one truth
+
+update문 : 테이블에 있는 데이터 수정하기
+
+update 테이블명
+set 변경할 열1 = 데이터, 변경할 열2 = 데이터, ... 변경할 열n = 데이터
+where 데이터를 변경할 대상 행을 선별하기 위한 조건
+
+문제> min_salary값 전체를 9870으로 수정하시오
+
+SQL> update idole
+  2  set min_salary = 9870;
+
+문제 > 새로운 테이블(a)에서 job_title이 Manager로 끝나는 max_salary값을 7770으로 수정하시오.
+
+SQL> create table a
+  2  as select * from jobs;
+
+SQL> update a
+  2  set max_salary = 7700
+  3  where job_title like '%Manager';
+
+delete문 : 테이블에 있는 데이터 삭제하기
+
+delete from 테이블명
+where 삭제할 대상 행을 선별하기 위한 조건식;
+
+문제 > 새로운 테이블에서 job_title이 Manager로 끝나는 행을 삭제하시오.
+
+delete from a
+where job_title like '%Manager';
+
+테이블 전체 데이터를 삭제
+
+SQL> delete from a;
