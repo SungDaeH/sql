@@ -1,0 +1,27 @@
+열 이름을 변경할 때 사용
+alter table 테이블명
+rename column (구)열 to (신)열; 
+
+문제 > '그래픽디자인'을 CGD라고 열 이름을 변경하고, 프로그래밍은 PL로 열 이름을 변경하시오.
+
+SQL> alter table bbb
+  2  rename column 그래픽디자인 to CGD;
+
+SQL> alter table bbb
+  2  rename column 프로그래밍 to PL;
+
+테이블 이름을 변경할 때 사용
+
+rename (구)테이블 to (신)테이블
+
+문제 > 현재 테이블 이름을 다른 이름의 테이블로 변경하시오.
+
+SQL> rename bbb to school;  # bbb -> school
+
+테이블을 삭제하는 drop
+
+drop table 테이블명
+
+문제 > 현재 테이블을 삭제하시오
+
+SQL> drop table school;
