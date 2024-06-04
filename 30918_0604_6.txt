@@ -1,0 +1,17 @@
+열의 자료형을 변경하는 modify
+alter table 이름
+modify 열이름 자료형; 예) varchar2(18)
+
+문제 3> abc테이블의 '비고'열의 자료형을 varchar2(18)로 수정하시오.
+
+특정열을 삭제할 때 사용하는 drop
+alter table 이름
+drop column 열이름;
+
+문제47> abc테이블의 '비고'열을 삭제하시오.
+alter table abc
+  2  drop column 비고;
+
+컬럼 추가
+alter table abc
+add 비고 number(5);
