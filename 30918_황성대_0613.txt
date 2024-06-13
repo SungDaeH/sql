@@ -1,0 +1,28 @@
+문제>'부서별성과분석표' 테이블을 생성하고
+'부서명', 'MAR', 'APR', 'MAY', '비고' 의 열을 생성하시오.
+(단 부서명과 비고는 문자형 타입선언, 나머지는 숫자형 4자리로 선언하시오)
+
+create table 부서별성과분석표(
+  2  부서명 varchar2(20),
+  3  MAR NUMBER(4),
+  4  APR NUMBER(4),
+  5  MAY NUMBER(4),
+  6  비고 VARCHAR2(20));
+
+문제> 테이블에 5개 이상의 데이터를 insert문을 이용해 채워넣으시오.
+
+SQL> insert into 부서별성과분석표
+  2  values('총무부', 55, 98, 50, '부족');
+
+SQL> insert into 부서별성과분석표
+  2  values('자재부', 75, 68, 89, '보통');
+
+SQL> insert into 부서별성과분석표
+  2  values('영업1부', 88, 93, 97, '우수');
+
+
+SQL> insert into 부서별성과분석표
+  2  values('영업2부', 100, 98, 90, '최우수');
+
+SQL> insert into 부서별성과분석표
+  2  values('관리부',77, 88, 70, '보통');
