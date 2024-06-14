@@ -1,0 +1,65 @@
+테이블 생성
+
+create table 부서별성과분석표(부서명 VARCHAR2(5), MAR NUMBER(4), 
+APR NUMBER(4), MAY NUMBER(4), 비고 VARCHAR2(10));
+
+테이블 타입 확인
+
+desc 테이블명
+
+실용
+desc 부서별성과분석표;
+
+문제 > '부서별성과분석표' 테이블 전체를 복사하여 'abc'라는 테이블을 생성하시오.
+
+데이터 삽입
+
+insert into abc
+  values('영업1부',78,99,67,'보통'); 
+insert into abc
+  values('영업2부',98,99,94,'우수');
+insert into abc
+  values('총무부',56,45,74,'미약');
+insert into abc
+  values('자재부',76,63,88,'보통');
+insert into abc
+  values('IT부',100,99,100,'최우수');
+
+데이터 업데이트
+
+alter table 테이블명
+modify 열이름 타입
+
+실용
+alter table abc
+modify 부서명 varchar2(20);
+
+문제 > 'abc' 테이블에서 may값이 90 이상인 자료에 대해 'sds'이름의 새로운 테이블을 생성하시오.
+
+SQL> create table sds
+  2  as select * from abc
+  3  where may >= 90;
+
+문제 > 'abc' 테이블을 삭제하시오.
+
+drop table abc;
+
+문제 > '몸무게' 이름의 열을 추가하고 작성하시오.
+
+alter table sds
+add 몸무게 varchar2(10);
+
+문제 > sds 테이블의 '몸무게'열 이름을 '성과금'로 수정하시오.
+
+SQL> alter table sds
+  2  rename column 몸무게 to 성과금;
+
+문제 > sds의 'may'의 자료형을 number(5)로 수정하시오.
+
+alter table sds
+modify may number(5);
+
+문제 > 'abc'테이블의 '성과금'열을 삭제하시오.
+
+SQL> alter table abc
+  2  drop column 성과금;
