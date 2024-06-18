@@ -1,0 +1,121 @@
+[테이블 생성]관련
+
+☆ 테이블명, 열이름 생성 규칙
+----------------------------------------------------------------------------------------------------------------------
+※ 테이블 이름 생성 규칙
+*** 문제 1번
+ 1. 테이블 이름은 문자로 시작해야 한다. (한글도 가능하며 숫자로 시작할 수 없음)
+ 2. 테이블 이름은 30byte 이하여야 한다. (즉 영어30자, 한글은 15자까지 사용가능)
+ 3. 같은 사용자 소유의 테이블 이름은 중복될 수 없다. 
+ 4. 테이블 이름은 영문자(한글가능), 숫자(0~9)와 특수문자를 사용할 수 있다. 
+ 5. SQL 키워드는 테이블 이름으로 사용할 수 없다.(함수 이름 SELECT, FROM등은 테이블 이름으로 사용 불가)
+ ***
+
+ ※ 열 이름 생성 규칙
+ 1. 열 이름은 문자로 시작해야 한다.
+ 2. 열 이름은 30byte 이하여야 한다.
+ 3. 한 테이블의 열 이름은 중복될 수 없다.
+ 4. 열 이름은 영문자 (한글가능), 숫자(0~9)와 특수문자를 사용할 수 있다. 
+ 5. SQL 키워드는 열 이름으로 사용할 수 없다.(함수 이름 SELECT, FROM등은 열 이름으로 사용 불가) 
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+☆ 테이블 생성 create table 테이블명
+
+☆테이블의 구성을 확인하는 desc~    ;  열과 데이터 타입 확인 
+ desc 테이블명 ;   
+desc abc;
+
+☆ 데이터 입력 insert into~   values( ~
+
+☆ 테이블 열의 조건에 맞는 데이터만 복사하여 새로운 이름의 테이블 생성하기 
+    create table 테이블명   
+    as selecte 열    from 복사할테이블   
+   where 열조건;
+
+SQL> create table abc
+  2  as select * from jobs
+  3  where min_salary <= 20000;
+
+☆ 테이블 이름 변경 하는 rename 
+rename (구)테이블명  to (신)테이블명
+SQL> rename cba to abc;
+
+☆테이블  삭제 
+drop table 테이블명;
+
+SQL> drop table abc;
+
+
+[테이블 변경]관련
+
+☆ 테이블에 열 추가 add
+alter table 테이블이름
+add 추가할열이름  데이터타입;
+
+SQL> alter table 성적표
+  2  add 몸무게 number(3);
+
+☆ 열 이름 변경  rename
+alter table 테이블이름
+rename column (구)열이름 to (새)열이름;
+
+SQL> alter table 성적표
+  2  rename column 몸무게 to 합격;
+
+☆ 열 자료형을 변경 modify
+alter table 테이블이름
+modify 변경할열 데이터타입 ; 
+
+SQL> alter table 성적표
+  2  modify 비고 varchar2(10);
+
+☆ 특정 열을 삭제 drop
+alter table 테이블이름
+drop column 삭제할 열 ; 
+
+SQL> alter table 성적표
+  2  drop column 합격;
+
+테이블 생성 문제 3~4문제
+테이블 수정 문제 3~4문제
+
+1번 문제
+다음에 맞는 테이블 이름 생성 규칙중 옳은 것을 고르시오.
+1. 테이블 이름은 문자(기호 포함)로 시작하여야 한다.
+2. 테이블의 이름은 30byte 이상이여야 한다.
+3. 테이블은 같은 소유자의 테이블 이름을 중복할 수 있다.
+4. 테이블은 숫자와 특수문자를 사용할 수 없으며, 영문자(영어, 한글)만 사용 가능하다.
+5. 테이블 이름에 띄어쓰기가 포함되어도 테이블이 만들어진다.
+
+2번 문제
+테이블 'Hello_World"를 생성 후 테이블에 "Name", "Age", "Gender", "BirthYear" (이름, 나이, 성별, 출생년도)를 넣어 테이블을 생성하시오.
+
+3번 문제 
+테이블 "Hello_World"에 값으로 자신의 정보를 입력하시오. 예) Name : 서00, Age : 19 등
+
+SQL> insert into Hello_World values('황성대', 18, '남자', 2006);
+
+4번 문제
+테이블 "Hello_World"에 'score'라는 열을 추가하시오. (score의 자료형은 number(3))
+
+SQL> alter table Hello_World
+  2  add score number(3);
+
+5번 문제
+"Hello_World"에 "BirthYear"를 열을 삭제하시오.
+
+SQL> alter table Hello_World
+  2  drop column BirthYear;
+
+6번 문제
+6-1 "Hello_World" 테이블을 "New_Data"라는 테이블로 복사하고,
+6-2 "Hello_World" 테이블을 삭제하시오.
+
+6-1
+ SQL> create table New_Data
+  2  as select * from Hello_World;
+
+6-2
+SQL> drop table Hello_World;
