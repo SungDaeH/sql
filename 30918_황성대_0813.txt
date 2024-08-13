@@ -1,0 +1,20 @@
+고객 테이블 생성, 기본키
+SQL> create table 고객(
+  2  고객번호 varchar(10) not null,
+  3  이름 varchar(10) not null,
+  4  비밀번호 varchar(10) not null,
+  5  primary key(고객번호));
+
+ 주문 테이블 생성, 기본키, 외래키
+SQL> create table 주문(
+  2  주문번호 varchar(10) NOT NULL,
+  3  고객번호 varchar(10) NOT NULL,
+  4  주문일 varchar(8) NOT NULL,
+  5  주문가격 decimal(15,2) NOT NULL,
+  6  배송도시 varchar(24),
+  7  배송완료일 varchar(8),
+  8  결제금액 varchar(8),
+  9  할인금액 decimal(15,2) NOT NULL,
+ 10  적립포인트 decimal(15,2) NOT NULL,
+ 11  PRIMARY KEY(주문번호),
+ 12  FOREIGN KEY(고객번호) REFERENCES 고객(고객번호));
