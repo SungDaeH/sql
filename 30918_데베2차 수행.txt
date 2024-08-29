@@ -1,0 +1,187 @@
+★ 고객 테이블 생성, 기본키 
+   create table 고객(
+   고객번호 varchar(30)  not null,
+   이름 varchar(10)  not null,
+   비밀번호 varchar(10)  not null,
+   primary key(고객번호));
+
+★ 주문 테이블 생성, 외래키 
+ CREATE TABLE 주문 ( 
+주문번호 varchar(10) NOT NULL,
+ 고객번호 varchar(10) NOT NULL,
+ 주문일 varchar(18) NOT NULL,
+ 주문가격 varchar(18) NOT NULL,
+ 결제금액 varchar(18) NOT NULL,
+ PRIMARY KEY (주문번호),
+ FOREIGN KEY (고객번호) REFERENCES 고객 (고객번호));
+
+
+
+★ 열제목의 사이즈를 조절할때 사용
+column 결제금액  format  a10;
+
+★ 원하는 테이블을 출력
+ select * from 테이블명 ;
+
+
+
+
+
+★ 주문 테이블 생성, 기본키, 외래키 
+CREATE TABLE 주문 ( 
+ 주문번호 varchar(10) NOT NULL,
+ 고객번호 varchar(10) NOT NULL,
+ 주문일 varchar(18) NOT NULL,
+ 주문가격 decimal(15,2) NOT NULL,
+ 배송도시 varchar(24),
+ 배송완료일 varchar(8),
+ 결제금액 varchar(8),
+ 할인금액 decimal(15,2) NOT NULL,
+ 적립포인트 decimal(15,2) NOT NULL,
+ PRIMARY KEY (주문번호),
+ FOREIGN KEY (고객번호) REFERENCES 고객 (고객번호));
+
+CREATE TABLE 주문 ( 
+주문번호 varchar(10) NOT NULL,
+ 고객번호 varchar(10) NOT NULL,
+ 주문일 varchar(18) NOT NULL,
+ 주문가격 varchar(18) NOT NULL,
+ 결제금액 varchar(18) NOT NULL,
+ PRIMARY KEY (주문번호),
+ FOREIGN KEY (고객번호) REFERENCES 고객 (고객번호));
+
+
+
+★ 고객 테이블 데이터 입력
+INSERT INTO 고객 VALUES ('C07', '홍만호', '1234');
+INSERT INTO 고객 VALUES ('C02', '최민수', 'y234');
+INSERT INTO 고객 VALUES ('C03', '여인구', 'uu94');
+INSERT INTO 고객 VALUES  ('C04', '김성팔', 'pas1');
+INSERT INTO 고객 VALUES  ('C05', '이왕규', 'p234');
+
+
+★ 주문 테이블 데이터 입력 (주문번호, 고객번호, 주문일, 주문가격, 할인금액) 
+
+
+INSERT INTO 주문 VALUES  ('O103', 'C04', '1207', 1000, 1000);
+INSERT INTO 주문 VALUES  ('O104', 'C03', '1207', 5500, 550);
+INSERT INTO 주문 VALUES ('O105', 'C07', '0117', 8500, 850);
+INSERT INTO 주문 VALUES ('O106', 'C02', '0518', 2300, 230);
+INSERT INTO 주문 VALUES  ('O107', 'C04', '0721', 5000, 50);
+INSERT INTO 주문 VALUES  ('O109', 'C02', '0125', 4500, 450);
+INSERT INTO 주문 VALUES ('O110', 'C03', '0430', 9000, 90);
+
+★
+col 고객번호  format  a10;
+col 이름   format  a10;
+col 비밀번호  format  a10;
+col 주문번호  format  a10;
+col 고객번호  format  a10;
+col 주문일 format  a10;
+col 주문가격  format  a10;
+col 결제금액  format  a10;
+select * from 주문;
+
+★ 열제목의 사이즈를 조절할때 사용
+col 결제금액  format  a10;
+column 결제금액  format  a10;
+
+★ 원하는 테이블을 출력
+ select * from 테이블명 ;
+
+★  열의 자료형을 변경하는 MODIFY
+ALTER TABLE 이름
+MODIFY 열이름 자료형 ;    예) VARCHAR2(18)
+
+★ 테이블 삭제
+drop table 고객;
+drop table 주문;
+
+
+
+<2차>
+[step1] : 고객과 주문 테이블 각각 출력해 보기
+
+SQL> select * from 고객;
+
+고객번호   이름       비밀번호
+---------- ---------- ----------
+C07        홍만호     1234
+C02        최민수     y234
+C03        여인구     uu94
+C04        김성팔     pas1
+C05        이왕규     p234
+
+SQL> select * from 주문;
+
+주문번호   고객번호   주문일     주문가격   결제금액
+---------- ---------- ---------- ---------- ----------
+O103       C04        1207       1000       1000
+O104       C03        1207       5500       550
+O105       C07        0117       8500       850
+O106       C02        0518       2300       230
+O107       C04        0721       5000       50
+O109       C02        0125       4500       450
+O110       C03        0430       9000       90
+
+[step2] : 고객과 주문 테이블 조인해서 출력해 보기
+
+ select 고객.*,주문.* from 고객, 주문 ;  //  두 테이블이 고객번호 기준으로 어마하게 출력됨 균형을 위해 큰테이블의 행을 기준으로 출력됨- 조건이 없다면 쓸모없는 테이블 일 수 있다.  
+
+[step3-1] : 조인한 테이블에서 조건을 주어서 출력해 보기
+
+    select 고객.고객번호, 고객.이름, 주문.주문번호, 주문.주문가격
+    from 고객, 주문
+    where 고객.고객번호 = 주문.고객번호 ;
+
+[step3-2] :
+★위 조인 출력 쿼리문을 복사해서 new라는 테이블 생성하여 출력
+
+ create table NEW as select 고객.고객번호, 고객.이름, 주문.주문번호, 주문.주문가격 
+ from 고객,주문
+ where 고객.고객번호 = 주문.고객번호 ;
+
+[step4] : 
+ 
+문제4-1> 'NEW' 테이블에서 주문가격이 5000 이상이 자료의 '고객번호','이름','주문가격'을 출력하시오
+   select 고객번호, 이름, 주문가격 from NEW
+   WHERE 주문가격>=5000;
+문제4-2> 'NEW' 테이블에서 이름이 '김성팔'인 자료를 출력하시오.
+
+     select * from NEW
+     WHERE 이름 ='김성팔';
+
+문제4-3> '고객' 테이블에서 '김성팔'의 이름과 비밀번호 열만 출력하시오.
+    select 이름 , 비밀번호 from 고객
+    WHERE 이름='김성팔';
+
+이름       비밀번호
+---------- ----------
+김성팔     pas1
+
+
+문제1> 'NEW' 테이블에 '할인율'이라는 열을 추가하시오 
+
+  ★  새로운 열을 추가할때 사용
+     ALTER TABLE  테이블명
+     ADD  열이름 타입선언;
+
+     ALTER TABLE  NEW
+     ADD  할인율  VARCHAR(10);
+
+문제2> 'NEW' 테이블에 '할인율'의 이름을 'DC'로 바꾸시오.
+ ★  ALTER TABLE  테이블명
+    RENAME COLUMN  기존 열이름 TO 새로운 이름;
+
+    ALTER TABLE  NEW
+    RENAME COLUMN  할인율 TO DC;
+
+문제3> 'NEW' 테이블에 'DC'의 자료형을 NUMBER(5) 로 바꾸시오.
+ ★  열의 자료형을 변경하는 MODIFY
+ ALTER TABLE 이름
+ MODIFY 열이름 자료형 ; 
+
+ ALTER TABLE NEW
+ MODIFY DC NUMBER(5) ; 
+
+  DESC 주문; 에서 자료형 바뀌었는지 확인
