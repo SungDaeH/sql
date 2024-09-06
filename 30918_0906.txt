@@ -1,0 +1,52 @@
+★ 고객 테이블 생성, 기본키 
+   create table 고객(
+   고객번호 varchar(30)  not null,
+   이름 varchar(10)  not null,
+   비밀번호 varchar(10)  not null,
+   primary key(고객번호));
+
+★ 주문 테이블 생성, 외래키 
+ CREATE TABLE 주문 ( 
+주문번호 varchar(10) NOT NULL,
+ 고객번호 varchar(10) NOT NULL,
+ 주문일 varchar(18) NOT NULL,
+ 주문가격 varchar(18) NOT NULL,
+ 결제금액 varchar(18) NOT NULL,
+ PRIMARY KEY (주문번호),
+ FOREIGN KEY (고객번호) REFERENCES 고객 (고객번호));
+
+
+고객 테이블 데이터 입력
+insert into 고객 values ('C07', '홍민호', '1234');
+insert into 고객 values ('C02', '최민수', 'y234');
+insert into 고객 values ('C03', '여인구', 'uu94');
+insert into 고객 values ('C04', '김상팔', 'pasl');
+insert into 고객 values ('C05', '이왕규', 'p234');
+
+
+★ 주문 테이블 데이터 입력 (주문번호, 고객번호, 주문일, 주문가격, 할인금액) 
+
+
+INSERT INTO 주문 VALUES  ('O103', 'C04', '1207', 1000, 1000);
+INSERT INTO 주문 VALUES  ('O104', 'C03', '1207', 5500, 550);
+INSERT INTO 주문 VALUES ('O105', 'C07', '0117', 8500, 850);
+INSERT INTO 주문 VALUES ('O106', 'C02', '0518', 2300, 230);
+INSERT INTO 주문 VALUES  ('O107', 'C04', '0721', 5000, 50);
+INSERT INTO 주문 VALUES  ('O109', 'C02', '0125', 4500, 450);
+INSERT INTO 주문 VALUES ('O110', 'C03', '0430', 9000, 90);
+
+문제: 고객, 주문 테이블을 조인하여 두테이블의
+ 고객번호가 일치하면서 주문가격이 5000이상인 고객번호, 이름, 주문가격을 출력하시오.
+
+SQL> select 고객.고객번호, 고객.이름, 주문.주문가격 from 고객, 주문
+  2  where 고객.고객번호 = 주문.고객번호 and 주문가격>=5000;
+
+문제: 위 문제의 같은 조건의 결과를 'NEW'라는 이름의 새로운 테이블로 생성하시오.
+
+SQL> create table NEW as select 고객.고객번호, 고객.이름, 주문.주문가격 from 고객, 주문
+  2  where 고객.고객번호 = 주문.고객번호 and 주문.주문가격>=5000;
+
+문제: new테이블에 '고객등급'이라는 이름의 열을 추가하시오. type : varchar2(10)
+
+SQL> alter table NEW
+  2  add 고객등급 varchar2(10);
