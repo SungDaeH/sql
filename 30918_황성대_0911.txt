@@ -1,0 +1,39 @@
+문제 > new 테이블에 이름, 주문가격, 10000이상이면 'vvip', 9000이상이면 'vip',
+8000이상이면 'Gold', 6000이상이면 'Silver', 3000이상이면 '일반회원',
+나머지는 '새싹회원'으로 출력되는 '고객등급'열을 case 조건문으로 작성하시오.
+
+SQL> select 이름, 주문가격,
+  2  case
+  3  when 주문가격 >= 10000 then 'vvip'
+  4  when 주문가격 >= 9000 then 'vip'
+  5  when 주문가격 >= 7500 then 'Gold'
+  6  when 주문가격 >= 6000 then 'Silver'
+  7  when 주문가격 >= 4000 then '일반회원'
+  8  else '새싹회원' end as 고객등급 from new;
+
+문제 > 위 문제를 'new1'이름으로 테이블을 생성하시오
+
+SQL> create table new1 as select 이름, 주문가격,
+  2  case
+  3  when 주문가격 >= 10000 then 'vvip'
+  4  when 주문가격 >= 9000 then 'vip'
+  5  when 주문가격 >= 7500 then 'Gold'
+  6  when 주문가격 >= 6000 then 'Silver'
+  7  when 주문가격 >= 4000 then '일반회원'
+  8  else '새싹회원' end as 고객등급 from new;
+
+문제 > 'new1' 테이블에서 count함수를 사용하여 '새싹회원'의 수를 출력하시오.
+
+SQL> select count(*) from new1
+  2  where 고객등급 = '새싹회원';
+
+위 출력결과의 열이름을 '새싹회원'으로 출력되게 하시오.
+
+SQL> select count(*) as 새싹회원 from new1
+  2  where 고객등급 = '새싹회원' ;
+
+문제 > new1 테이블에서 count함수를 사용하여 '새싹회원', '일반회원'의 수를 출력하시오
+
+SQL> select count(*) from new1
+  2  where 고객등급 = '새싹회원' or 고객등급 = '일반회원';
+
