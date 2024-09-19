@@ -1,0 +1,49 @@
+문제 3-4> new 테이블에 이름, 주문가격, 10000이상이면 'vvip', 9000이상이면 'vip', 7500 이상이면 'Gold', 5000 이상이면
+'Silver', 3000 이상이면 '일반회원' 나머지는 '새싹회원'으로 출력되는 회원등급 열을 생성하시오.
+
+select 이름, 주문가격 from new
+	case
+	when 주문가격 >= 10000 then 'vvip'
+	when 주문가격 >= 9000 then 'vip'
+	when 주문가격 >= 7500 then 'Gold'
+	when 주문가격 >= 5000 then 'Silver'
+	when 주문가격 >= 3000 then '일반회원'
+	else '새싹회원' end as 고객등급 from new;
+
+문제 3-5> 위 문제 3-4> 를 new1 이름으로 테이블을 생성하시오
+
+create table new1 as select 이름, 주문가격,
+	case
+	when 주문가격 >= 10000 then 'vvip'
+	when 주문가격 >= 9000 then 'vip'
+	when 주문가격 >= 7500 then 'Gold'
+	when 주문가격 >= 5000 then 'Silver'
+	when 주문가격 >= 3000 then '일반회원'
+	else '새싹회원' end as 고객등급 from new;
+
+문제 3-6> new1 테이블에서 count함수를 사용하여 '새싹회원'의 수를 출력하시오
+
+select count(*) from new1
+	where 고객등급 = '새싹회원';
+
+문제 3-7> 위 출력결과의 열이름을 '새싹회원'으로 출력되게 하시오.
+
+select count(*) as '새싹회원' from new1
+	where 고객등급 = '새싹회원';
+
+문제3-8> 'new1' 테이블에서 count함수를 사용하여 '새싹회원', '일반회원'의 수를 출력하시오.
+
+select count(*) from new1
+where 고객등급 = '새싹회원' or 고객등급 = '일반회원';
+
+문제3-9> 'new1' 테이블의 이름과 고객등급 열을 group by, order by 함수를 사용하여
+'고객등급'별 정렬 하시오.
+
+select 이름, 고객등급 from new1
+group by 이름, 고객등급
+order by 고객등급;
+
+문제3-11> 'new1' 테이블에서 '일반회원' 회원들의 주문가격 평균을 avg함수를 사용해 '평균'별칭으로 출력하시오.
+
+select avg(주문가격) as 평균 from new1
+	where 고객등급 = '일반회원';
