@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    ></script>
+    <script text="text/javascript">
+      function createData() {
+        var sendData = $("#AjaxForm").serialize();
+        console.log(sendData);
+        return sendData;
+      }
+      function AjaxCall() {
+        $.ajax({
+          type: "post",
+          url: "json.php",
+          data: createData(),
+          dataType: "json",
+          success: function (data, status, xhr) {
+            console.log(data);
+          },
+          else: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+          },
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <form name="AjaxForm" id="AjaxForm">
+      <label for="name">이름</label>
+      <input type="text" name="name" id="name" />
+      <br />
+      <label for="email">이메일</label>
+      <input type="text" name="email" id="email" />
+    </form>
+    <input type="button" value="POST" onclick="AjaxCall();" />
+  </body>
+</html>
