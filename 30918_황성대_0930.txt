@@ -1,0 +1,75 @@
+/* 고객 테이블 생성, 기본키 */
+   create table 고객(
+   고객번호 varchar(30)  not null,
+   이름 varchar(10)  not null,
+   비밀번호 varchar(10)  not null,
+   primary key(고객번호));
+
+/* 주문 테이블 생성, 외래키 */
+ CREATE TABLE 주문 ( 
+주문번호 varchar(10) NOT NULL,
+ 고객번호 varchar(10) NOT NULL,
+ 주문일 varchar(18) NOT NULL,
+ 주문가격 varchar(18) NOT NULL,
+ 결제금액 varchar(18) NOT NULL,
+ PRIMARY KEY (주문번호),
+ FOREIGN KEY (고객번호) REFERENCES 고객 (고객번호));
+
+/* 고객 테이블 데이터 입력*/
+INSERT INTO 고객 VALUES ('C07', '홍만호', '1234');
+INSERT INTO 고객 VALUES ('C02', '최민수', 'y234');
+INSERT INTO 고객 VALUES ('C03', '여인구', 'uu94');
+INSERT INTO 고객 VALUES  ('C04', '김성팔', 'pas1');
+INSERT INTO 고객 VALUES  ('C05', '이왕규', 'p234');
+
+
+/*  주문 테이블 데이터 입력 (주문번호, 고객번호, 주문일, 주문가격, 할인금액) */
+
+INSERT INTO 주문 VALUES  ('O103', 'C44', '1207', 1000, 1000);
+INSERT INTO 주문 VALUES  ('O104', 'C05', '1207', 5500, 550);
+INSERT INTO 주문 VALUES ('O105', 'C07', '0117', 8500, 850);
+INSERT INTO 주문 VALUES ('O106', 'C02', '0518', 2300, 230);
+INSERT INTO 주문 VALUES  ('O107', 'C04', '0721', 5000, 50);
+INSERT INTO 주문 VALUES  ('O109', 'C42', '0125', 4500, 450);
+INSERT INTO 주문 VALUES ('O110', 'C03', '0430', 9000, 90);
+
+/* 열 조정*/
+col 고객번호  format  a10;
+col 이름   format  a10;
+col 비밀번호  format  a10;
+col 주문번호  format  a10;
+col 고객번호  format  a10;
+col 주문일 format  a10;
+col 주문가격  format  a10;
+col 결제금액  format  a10;
+
+
+
+/* new테이블 생성*/
+create table new as select 고객.고객번호, 고객.이름, 주문.주문가격 from 고객, 주문
+         where 고객.고객번호=주문.고객번호 and 주문가격>=1000;
+
+
+
+/*  ---NEW 테이블에 아래 열 추가--- */
+ INSERT INTO new VALUES  ('C01', '서태지', '10000');
+ INSERT INTO new VALUES  ('C09', '이주노', '900');
+ INSERT INTO new VALUES  ('C05', '양현석', '8800');
+ INSERT INTO new VALUES  ('C06', '강하늘', '2400');
+ INSERT INTO new VALUES  ('C08', 'JHON KIM','6700');
+ INSERT INTO new VALUES  ('C11', '김봉덕', '9900');
+ INSERT INTO new VALUES  ('C10', '김봉학', '1300');
+ INSERT INTO new VALUES  ('C12', '박학봉', '4800');
+ INSERT INTO new VALUES  ('C13', '최덕팔', '5400');
+ INSERT INTO new VALUES  ('C14', 'SAM PARL','4200');
+ INSERT INTO new VALUES  ('C16', '김만식', '2300');
+ INSERT INTO new VALUES  ('C15', '최팔복', '1100');
+ INSERT INTO new VALUES  ('C17', '이말복', '3600');
+ INSERT INTO new VALUES  ('C18', '강순자', '6400');
+ INSERT INTO new VALUES  ('C19', '남궁옥분','2900');
+ INSERT INTO new VALUES  ('C20', '박인순', '5350');
+ INSERT INTO new VALUES  ('C21', '오강숙', '1100');
+ INSERT INTO new VALUES  ('C22', '이순례', '2200');
+ INSERT INTO new VALUES  ('C23', '김옥례', '7900');
+ INSERT INTO new VALUES  ('C24', '장옥녀','4000');
+ INSERT INTO new VALUES  ('C25', '최삼순','8380');
